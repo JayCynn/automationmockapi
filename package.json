@@ -31,12 +31,13 @@
   "main": "lib/index",
   "type": "module",
   "scripts": {
-    "start": "node src",
+    "start": "node src/index.js",
     "dev": "nodemon src/",
     "prettier": "npx prettier \"**/*.js\" --write",
     "mocha": "cross-env NODE_ENV=test mocha test/ --recursive --exit",
     "test": "npm run mocha",
-    "bundle:client": "npm pack --pack-destination ./public"
+    "bundle:client": "npm pack --pack-destination ./public",
+    "vercel-build": "npm install"
   },
   "dependencies": {
     "@feathersjs/adapter-commons": "^5.0.31",
@@ -60,5 +61,10 @@
     "mocha": "^10.8.2",
     "nodemon": "^3.1.9",
     "prettier": "^3.4.2"
-  }
+  },
+  "files": [
+    "src",
+    "config",
+    "public"
+  ]
 }
