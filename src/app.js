@@ -26,8 +26,8 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
-// Host the public folder for serving static files
-app.use('/', serveStatic(app.get('public')));
+// // Host the public folder for serving static files
+// app.use('/', serveStatic(app.get('public')));
 
 // Configure services and real-time functionality
 app.configure(rest());
