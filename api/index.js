@@ -1,4 +1,5 @@
-import app from "../src/app.js";
+import app from '../src/app.js';
 
-// Export the Feathers app as a serverless function
-export default app;
+export default (req, res) => {
+    app.handle(req, res);
+};
