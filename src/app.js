@@ -26,8 +26,8 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 
-const publicDir = path.resolve('public'); // Resolves the absolute path
-app.use('/', serveStatic(publicDir));
+// Host the public folder for serving static files
+app.use('/', serveStatic(app.get('public')));
 
 // Configure services and real-time functionality
 app.configure(rest());
