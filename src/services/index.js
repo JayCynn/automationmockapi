@@ -22,7 +22,7 @@ export const services = (app) => {
 
     res.status(200).json({
       response: {
-        resultStatus: "Success",
+        resultStatus: "Transaction Okay",
         system: "FrontMoneyDeposit",
         TransactionType: "KI",
         MessageID: "928",
@@ -33,7 +33,7 @@ export const services = (app) => {
         PatronNumber: patronNumber,
         ReferenceTransaction: "12345",
         ResponseCode: "200",
-        ResponseCodeDescription: "Transaction Successful"
+        ResponseCodeDescription: "Transaction Okay"
       }
     });
   });
