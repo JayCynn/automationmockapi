@@ -38,6 +38,33 @@ export const services = (app) => {
     });
   });
 
+  app.post('/frontmoneydepositfail', async (req, res) => {
+    const { patronNumber, amount } = req.body;
+
+    if (!patronNumber || !amount) {
+      return res.status(400).json({ error: 'Patron number and amount are required' });
+    }
+
+    const timestamp = new Date().toISOString();
+
+    res.status(500).json({
+      response: {
+        resultStatus: "Failed",
+        system: "FrontMoneyDeposit",
+        TransactionType: "KI",
+        MessageID: "928",
+        DeviceID: "PL360",
+        TimeStamp: timestamp,
+        CorporateID: "S",
+        PropertyID: "A",
+        PatronNumber: patronNumber,
+        ReferenceTransaction: "12345",
+        ResponseCode: "500",
+        ResponseCodeDescription: "Failed"
+      }
+    });
+  });
+
   app.post('/sendsmssuccess', async (req, res) => {
     const { smsPhoneNum, smsContent } = req.body;
 
