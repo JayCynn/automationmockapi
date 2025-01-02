@@ -76,20 +76,18 @@ export const services = (app) => {
         ]
       };
 
-      await new Promise((resolve) => setTimeout(resolve, 100000));
-
       // Step 3: Make the external API call with the access token
-      const apiResponse = await axios.post(
-        `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
-        submissionPayload,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}` // Use the access token in the Authorization header
-          }
-        }
-      );
+      // const apiResponse = await axios.post(
+      //   `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
+      //   submissionPayload,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${access_token}` // Use the access token in the Authorization header
+      //     }
+      //   }
+      // );
 
-      const { data } = apiResponse; // Process the API response as needed
+      // const { data } = apiResponse; // Process the API response as needed
 
       // Return the response to the client
       res.json({
