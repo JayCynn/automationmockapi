@@ -32,29 +32,29 @@ export const services = (app) => {
           {
             FieldCode: "hdSysBtnState",
             Value: {
-              Value: "show"
+              "values": ["show"]
             }
           }
         ]
       };
 
 
+      console.log(formId, submissionRefNo, updateSubmissionPayload)
 
       // Step 3: Call the Update Submission Data API
-      // const updateApiResponse = await axios.post(
-      //   `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
-      //   updateSubmissionPayload,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${access_token}`, // Use the access token in the Authorization header
+      const updateApiResponse = await axios.post(
+        `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
+        updateSubmissionPayload,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`, // Use the access token in the Authorization header
 
-      //     }
-      //   }
-      // );
 
-      // const updateApiData = updateApiResponse.data; // Process the API response as needed
+          }
+        }
+      );
 
-      // console.log(updateApiData)
+      console.log(updateApiResponse.data)
 
 
       // Step 2: Prepare the payload for the external API call
@@ -75,8 +75,6 @@ export const services = (app) => {
           }
         ]
       };
-
-      console.log(submissionPayload)
 
       // Step 3: Make the external API call with the access token
       const apiResponse = await axios.post(
