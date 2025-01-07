@@ -42,19 +42,19 @@ export const services = (app) => {
       console.log(formId, submissionRefNo, updateSubmissionPayload)
 
       // Step 3: Call the Update Submission Data API
-      const updateApiResponse = await axios.post(
-        `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
-        updateSubmissionPayload,
-        {
-          headers: {
-            Authorization: `Bearer ${access_token}`, // Use the access token in the Authorization header
+      // const updateApiResponse = await axios.post(
+      //   `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
+      //   updateSubmissionPayload,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${access_token}`, // Use the access token in the Authorization header
 
 
-          }
-        }
-      );
+      //     }
+      //   }
+      // );
 
-      console.log(updateApiResponse.data)
+      // console.log(updateApiResponse.data)
 
 
       // Step 2: Prepare the payload for the external API call
@@ -77,17 +77,17 @@ export const services = (app) => {
       };
 
       // Step 3: Make the external API call with the access token
-      // const apiResponse = await axios.post(
-      //   `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
-      //   submissionPayload,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${access_token}` // Use the access token in the Authorization header
-      //     }
-      //   }
-      // );
+      const apiResponse = await axios.post(
+        `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
+        submissionPayload,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}` // Use the access token in the Authorization header
+          }
+        }
+      );
 
-      // const { data } = apiResponse; // Process the API response as needed
+      const { data } = apiResponse; // Process the API response as needed
 
       // Return the response to the client
       res.json({
