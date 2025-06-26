@@ -9,10 +9,15 @@ export const services = (app) => {
       PatronAccountNumber: patronAccountNumber,
       WorkflowCode: workflowCode,
       WorkflowStageCode: workflowStageCode,
-      WorkflowActionCode: workflowActionCode
+      WorkflowActionCode: workflowActionCode,
+      tenantUrl
     } = req.body;
 
-    console.log(formId, submissionRefNo, patronAccountNumber, workflowCode, workflowStageCode, workflowActionCode)
+    if (!tenantUrl) {
+      return res.status(400).json({ error: 'tenantUrl is required' });
+    }
+
+    console.log(formId, submissionRefNo, patronAccountNumber, workflowCode, workflowStageCode, workflowActionCode, tenantUrl)
 
     try {
       // Step 1: Get the access token
@@ -20,7 +25,7 @@ export const services = (app) => {
       tokenPayload.append('ClientId', 'mySecret'); // Replace with your actual Client ID
       tokenPayload.append('ClientSecret', 'mySecret'); // Replace with your actual Client Secret
 
-      const tokenResponse = await axios.post('https://qa3.kube365.com/graph.api/v1.0/token', tokenPayload, {
+      const tokenResponse = await axios.post(`https://${tenantUrl}/graph.api/v1.0/token`, tokenPayload, {
 
       });
 
@@ -43,7 +48,7 @@ export const services = (app) => {
 
       // Step 3: Call the Update Submission Data API
       // const updateApiResponse = await axios.post(
-      //   `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
+      //   `https://${tenantUrl}/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}`,
       //   updateSubmissionPayload,
       //   {
       //     headers: {
@@ -78,7 +83,7 @@ export const services = (app) => {
 
       // Step 3: Make the external API call with the access token
       const apiResponse = await axios.post(
-        `https://qa3.kube365.com/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
+        `https://${tenantUrl}/graph.api/v1.0/Submission/(${formId})/${submissionRefNo}/MoveStage`,
         submissionPayload,
         {
           headers: {
